@@ -12,34 +12,57 @@
 
 #include "ft_printf.h"
 
-int     ft_putchar(int c)
+char	*ft_strchr(char *str, int c)
 {
-    write (1, &c, 1);
-    return (1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	return (0);
 }
 
-int     ft_formats(va_list args, const char format)
+int     ft_check_form(va_list list, char c)
 {
-    int     print_len;
-
-    print_len = 0;
-    if (format == 'c')
-        print_len += ft_putchar(va_arg(args, int));
-    else if (format == 's')
-        print_len += ft_printstr(va_arg(args, char *));
-    else if (format == 'p')
-        print_len += ft_print_ptr(va_arg(args, unsigned long long));
-    else if (format == 'd' || format == 'i')
-        print_len += ft_printnbr(va_arg(args, int));
-    else if (format == 'u')    
-        print_len += ft_print_unsigned(va_arg(args, unsigned int));
-    else if (format == 'x' || format == 'X')
-        print_len += ft_print_hexa(va_arg(args, unsigned int), format)
-    else if (format == '%')
-        print_len += ft_printpercent();
+if (c == 'c')
+		return (ft_putchar(va_arg(list, int)));
+	else if (c == 's')
+		return (ft_putstr(va_arg(list, char *)));
+	else if (c == 'p')
+		return (ft_putvoid(va_arg(list, unsigned long), "0123456789abcdef", 1));
+	else if (c == 'd' || c == 'i')
+		return (ft_putnbr(va_arg(list, int)));
+	else if (c == 'u')
+		return (ft_put_unsigned_nbr(va_arg(list, unsigned int)));
+	else if (c == 'x')
+		return (ft_puthexa(va_arg(list, unsigned int), "0123456789abcdef"));
+	return (ft_puthexa(va_arg(list, unsigned int), "0123456789ABCDEF"));
 }
 int		ft_printf(const char*str, ...)
 {
+    	int		size;
+	int		i;
+	va_list	list;
 
-
+	size = 0;
+	i = 0;
+	va_start(list, str);
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			if (ft_strchr("cspdiuxX", str[++i]))
+			{
+				size += ft_check_form(list, str[i++]);
+				continue ;
+			}
+		}
+		size += ft_putchar(str[i++]);
+	}
+	va_end(list);
+	return (size);
 }

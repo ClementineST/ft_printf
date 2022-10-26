@@ -14,16 +14,19 @@
 # define FT_PRINF_H
 
 # include <stdarg.h>
-# include "libft.h"
+# include <unistd.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_formats(va_list args, const char format);
-int		ft_putchar(int c);
-int		ft_printstr(char *str);
-int		ft_print_ptr(unsigned long long ptr);
-int		ft_printnbr(int n);
-int		ft_print_unsigned(unsigned int n);
-int		ft_print_hex(unsigned int num, const char format);
-int		ft_printpercent(void);
+int		ft_printf(const char *str, ...);
 
-# endif
+int		ft_check_flag(va_list list, char c);
+
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_putnbr(int n);
+int		ft_put_unsigned_nbr(unsigned int n);
+int		ft_putvoid(unsigned long n, char *base, int start);
+int		ft_puthexa(unsigned int n, char *base);
+
+char	*ft_strchr(char *str, char c);
+
+#endif
