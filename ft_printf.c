@@ -6,13 +6,13 @@
 /*   By: stclemen <stclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:57:36 by stclemen          #+#    #+#             */
-/*   Updated: 2022/10/24 14:57:36 by stclemen         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:00:39 by stclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(char *str, char c)
 {
 	int	i;
 
@@ -26,9 +26,9 @@ char	*ft_strchr(char *str, int c)
 	return (0);
 }
 
-int     ft_check_form(va_list list, char c)
+int	ft_check_form(va_list list, char c)
 {
-if (c == 'c')
+	if (c == 'c')
 		return (ft_putchar(va_arg(list, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(list, char *)));
@@ -42,9 +42,10 @@ if (c == 'c')
 		return (ft_puthexa(va_arg(list, unsigned int), "0123456789abcdef"));
 	return (ft_puthexa(va_arg(list, unsigned int), "0123456789ABCDEF"));
 }
-int		ft_printf(const char*str, ...)
+
+int	ft_printf(const char*str, ...)
 {
-    	int		size;
+	int		size;
 	int		i;
 	va_list	list;
 

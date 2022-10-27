@@ -6,14 +6,14 @@
 /*   By: stclemen <stclemen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:51:43 by stclemen          #+#    #+#             */
-/*   Updated: 2022/10/26 21:51:43 by stclemen         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:37:22 by stclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     ft_putchar(char c)
+int	ft_putchar(char c)
 {
-    write (1, &c, 1):
-    return (1);
+	write(1, &c, 1);
+	return (1);
 }
